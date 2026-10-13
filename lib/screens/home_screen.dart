@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:rehla/widgets/home_header.dart';
 import 'package:rehla/widgets/search_box.dart';
+import '../widgets/hero_banner.dart';
+import '../data/destinations.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -15,6 +17,9 @@ class HomeScreen extends StatelessWidget {
             const HomeHeader(prenom: 'Youssef'),
             const SizedBox(height: 20),
             const SearchBox(),
+
+            const SizedBox(height: 24),
+            HeroBanner(destination: destinations.first),
           ],
         ),
       ),
