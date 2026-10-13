@@ -17,3 +17,9 @@ rayon de 24 pixels. l'image peut avoir des coins carres.
 
 Q6 : right: 130 reserve de l'espace a droite pour le bouton decouvrir et evite que
 le texte ne se superpose au bouton.
+
+Q7 : Expanded donne a la Column la largeur disponible dans la Row. la Row contenant la note et le prix dispose d'un espace
+horizontal libre. Sans largeur disponible il peut provoquer une erreur de contraintes.
+
+Q8 : Aucune ligne supplementaire dans HomeScreen ,il suffit d'ajouter une destination a la liste destinations,
+dans le fichier ou cette liste est declaree. La boucle for afficher automatiquement la nouvelle carte.
