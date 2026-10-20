@@ -23,3 +23,11 @@ horizontal libre. Sans largeur disponible il peut provoquer une erreur de contra
 
 Q8 : Aucune ligne supplementaire dans HomeScreen ,il suffit d'ajouter une destination a la liste destinations,
 dans le fichier ou cette liste est declaree. La boucle for afficher automatiquement la nouvelle carte.
+
+Q9 : Si on écrit _categorie = c; sans setState(), la valeur de _categorie change en mémoire, Flutter ne relance pas automatiquement build().
+alors l'écran ne se met pas forcement à jour immediatement.
+
+Q10 : _filtrees est un getter recalculé à chaque build() parce que la liste filtrée dépend de _categorie. quand la catégorie change et setState() relance build(), le getter renvoie automatiquement la bonne liste.
+
+Q11 : HeroBanner peut rester un StatelessWidget parce qu'il ne gère pas d'état interne qui change. C'est HomeScreen qui gère l'état avec setState().
+Flutter reconstruit les widgets nécessaires lorsque l'état change.
