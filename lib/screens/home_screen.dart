@@ -75,9 +75,13 @@ class _HomeScreenState extends State<HomeScreen> {
 
             const SizedBox(height: 12),
             ...[
-              for (final destination in _filtrees)
-                DestinationCard(destination: destination),
+              for (final d in _filtrees)
+                DestinationCard(key: ValueKey(d.nom), destination: d),
             ],
+            // Sans ValueKey, le coeur peut apparaitre sur une autre carte
+            // apres le filtrage
+            // Avec ValueKey(d.nom), Flutter reconnait chaque destination
+            // par son nom
           ],
         ),
       ),
