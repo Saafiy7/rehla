@@ -6,6 +6,7 @@ import '../data/destinations.dart';
 import '../widgets/destination_card.dart';
 import '../widgets/section_title.dart';
 import '../models/destination.dart';
+import 'package:rehla/data/destinations.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
