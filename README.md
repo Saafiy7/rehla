@@ -37,3 +37,9 @@ Q12 : Oui, le filtre est conservé. Navigator.push() ajoute l'écran DetailScree
 Q13:DetailScreen reçoit la destination grace a son constructeur. Lorsqu on ouvre l'écran, on transmet l'objet destination de la carte sélectionnee. On réutilise le mecanisme de passage de parametres par constructeur étudiee au TP3.
 
 Q14: L'effet animation tactile "InkWell" peut dépasser les coins arrondis de la carte. Avec Clip.antiAlias, l'effet est découpe pour respecter les bordures arrondies.
+
+Q15 : formKey.currentState!.validate() cette méthode vérifie tous les champs du Form en exécutant leurs fonctions validator. elle renvoie true si tous les champs sont valides.elle renvoie false si au moins un champ contient une erreur.
+
+Q16 : inputFormatters controle la saisie pendant que l'utilisateur écrit. par exemple il empechent de saisir des lettres et limitent le téléphone à 8 chiffres. validator vérifie si la valeur saisie est correcte lorsque la validation du formulaire est déclenchée. Par exemple, il vérifie que le numéro contient exactement 8 chiffres.
+
+Q17 : dispose() permet de libérer les ressources utilisée par les TextEditingController lorsqu on quitte l'écran.

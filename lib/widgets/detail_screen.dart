@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models/destination.dart';
+import '../screens/reservation_screen.dart';
 import '../widgets/favorite_button.dart';
 
 class DetailScreen extends StatefulWidget {
@@ -264,9 +265,13 @@ class _DetailScreenState extends State<DetailScreen> {
               const SizedBox(width: 12),
               FilledButton(
                 onPressed: () {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text('Réservation pour $_voyageurs voyageur(s)'),
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ReservationScreen(
+                        destination: widget.destination,
+                        voyageurs: _voyageurs,
+                      ),
                     ),
                   );
                 },
