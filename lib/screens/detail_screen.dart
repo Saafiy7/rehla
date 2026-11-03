@@ -77,18 +77,21 @@ class _DetailScreenState extends State<DetailScreen> {
                 child: Stack(
                   fit: StackFit.expand,
                   children: [
-                    Image.network(
-                      destination.image,
-                      fit: BoxFit.cover,
-                      errorBuilder: (context, error, stackTrace) {
-                        return Container(
-                          color: Colors.grey.shade300,
-                          child: const Icon(
-                            Icons.image_not_supported,
-                            size: 60,
-                          ),
-                        );
-                      },
+                    Hero(
+                      tag: 'image-${destination.nom}',
+                      child: Image.asset(
+                        destination.image,
+                        fit: BoxFit.cover,
+                        errorBuilder: (context, error, stackTrace) {
+                          return Container(
+                            color: Colors.grey.shade300,
+                            child: const Icon(
+                              Icons.image_not_supported,
+                              size: 60,
+                            ),
+                          );
+                        },
+                      ),
                     ),
 
                     Positioned(
