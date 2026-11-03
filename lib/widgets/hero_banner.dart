@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models/destination.dart';
-import '../widgets/detail_screen.dart';
+import '../screens/detail_screen.dart';
 
 class HeroBanner extends StatelessWidget {
   final Destination destination;

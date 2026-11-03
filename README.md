@@ -48,3 +48,12 @@ Q18 : On utilise readOnly: true pour empecher l'utilisateur de saisir la date ma
 
 Q19 :  _total est un getter qui calcule le prix selon la formule et le nombre de voyageurs. il se recalcule automatiquement
 quand les valeurs changent et que setState() reconstruit l'interface.
+
+Q20 : reservation vaut null
+
+Q21 : VS Code affiche un avertissement du type :
+"Don't use BuildContext across asynchronous gaps."
+Cela signifie qu'après un await, le widget peut avoir été supprimé de l'arbre des widgets. Son context peut donc ne plus être valide. mounted permet de vérifier que le widget existe toujours.
+
+Q22 : Une boite de dialogue est affichée au-dessus de la page actuelle.
+Navigator.pop(context) permet de fermer la boite de dialogue et de revenir a la page précédente.

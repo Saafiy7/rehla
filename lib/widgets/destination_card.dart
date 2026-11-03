@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../models/destination.dart';
 import 'package:rehla/widgets/favorite_button.dart';
-import 'package:rehla/widgets/detail_screen.dart';
+import 'package:rehla/screens/detail_screen.dart';
 
 class DestinationCard extends StatelessWidget {
   final Destination destination;
@@ -41,58 +41,62 @@ class DestinationCard extends StatelessWidget {
                   child: Image.asset(
                     destination.image,
                     width: 88,
-                height: 88,
-                fit: BoxFit.cover,
-              ),
-            ),
-            const SizedBox(width: 14),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    destination.nom,
-                    style: theme.textTheme.titleMedium?.copyWith(
-                      fontWeight: FontWeight.bold,
-                    ),
+                    height: 88,
+                    fit: BoxFit.cover,
                   ),
-                  const SizedBox(height: 6),
-                  Row(
+                ),
+                const SizedBox(width: 14),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Icon(Icons.place_outlined, size: 16, color: cs.primary),
-                      const SizedBox(width: 4),
-                      Expanded(
-                        child: Text(
-                          destination.region,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 8),
-                  Row(
-                    children: [
-                      const Icon(Icons.star, size: 16, color: Colors.amber),
-                      const SizedBox(width: 4),
-                      Text('${destination.note}'),
-                      const Spacer(),
                       Text(
-                        '${destination.prix} DT',
-                        style: theme.textTheme.titleSmall?.copyWith(
+                        destination.nom,
+                        style: theme.textTheme.titleMedium?.copyWith(
                           fontWeight: FontWeight.bold,
-                          color: cs.primary,
                         ),
                       ),
+                      const SizedBox(height: 6),
+                      Row(
+                        children: [
+                          Icon(
+                            Icons.place_outlined,
+                            size: 16,
+                            color: cs.primary,
+                          ),
+                          const SizedBox(width: 4),
+                          Expanded(
+                            child: Text(
+                              destination.region,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 8),
+                      Row(
+                        children: [
+                          const Icon(Icons.star, size: 16, color: Colors.amber),
+                          const SizedBox(width: 4),
+                          Text('${destination.note}'),
+                          const Spacer(),
+                          Text(
+                            '${destination.prix} DT',
+                            style: theme.textTheme.titleSmall?.copyWith(
+                              fontWeight: FontWeight.bold,
+                              color: cs.primary,
+                            ),
+                          ),
+                        ],
+                      ),
+                      const FavoriteButton(),
                     ],
                   ),
-                  const FavoriteButton(),
-                ],
-              ),
+                ),
+              ],
             ),
-          ],
+          ),
         ),
-      ),
-      ),
       ),
     );
   }

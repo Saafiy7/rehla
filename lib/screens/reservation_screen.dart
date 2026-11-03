@@ -72,10 +72,19 @@ class _ReservationScreenState extends State<ReservationScreen> {
       setState(() => _autoValidation = AutovalidateMode.onUserInteraction);
       return;
     }
-    // Provisoire : sera remplacé au palier 5
-    ScaffoldMessenger.of(
-      context,
-    ).showSnackBar(const SnackBar(content: Text('Formulaire valide')));
+    final reservation = Reservation(
+      // TODO 1 : remplir avec widget.destination, les contrôleurs (trim),
+      //          _date!, widget.voyageurs et _formule
+      destination: widget.destination,
+      nom: _nomCtrl.text.trim(),
+      email: _emailCtrl.text.trim(),
+      telephone: _telCtrl.text.trim(),
+      dateDepart: _date!,
+      voyageurs: widget.voyageurs,
+      formule: _formule,
+    );
+    // TODO 2 : fermer l'écran ET renvoyer reservation
+    Navigator.of(context).pop(reservation);
   }
 
   final _dateCtrl = TextEditingController();
