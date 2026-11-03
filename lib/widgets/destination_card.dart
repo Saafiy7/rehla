@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../models/destination.dart';
 import 'package:rehla/widgets/favorite_button.dart';
+import 'package:rehla/widgets/detail_screen.dart';
 
 class DestinationCard extends StatelessWidget {
   final Destination destination;
@@ -17,15 +18,29 @@ class DestinationCard extends StatelessWidget {
       color: cs.surfaceContainerLow,
       margin: const EdgeInsets.only(bottom: 12),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+      clipBehavior: Clip.antiAlias,
       child: Padding(
         padding: const EdgeInsets.all(10),
-        child: Row(
-          children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(14),
-              child: Image.asset(
-                destination.image,
-                width: 88,
+        child: InkWell(
+          onTap: () {
+            // TODO 1 : Navigator.push vers DetailScreen,
+            //          en lui passant la destination de CETTE carte
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => DetailScreen(destination: destination),
+              ),
+            );
+          },
+          child: Padding(
+            padding: const EdgeInsets.all(10),
+            child: Row(
+              children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(14),
+                  child: Image.asset(
+                    destination.image,
+                    width: 88,
                 height: 88,
                 fit: BoxFit.cover,
               ),
@@ -76,6 +91,8 @@ class DestinationCard extends StatelessWidget {
             ),
           ],
         ),
+      ),
+      ),
       ),
     );
   }

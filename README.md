@@ -31,3 +31,9 @@ Q10 : _filtrees est un getter recalculé à chaque build() parce que la liste fi
 
 Q11 : HeroBanner peut rester un StatelessWidget parce qu'il ne gère pas d'état interne qui change. C'est HomeScreen qui gère l'état avec setState().
 Flutter reconstruit les widgets nécessaires lorsque l'état change.
+
+Q12 : Oui, le filtre est conservé. Navigator.push() ajoute l'écran DetailScreen au-dessus de HomeScreen dans la pile de navigation. Quand on utilise Navigator.pop(), DetailScreen est retiré et on retrouve HomeScreen dans son état précédent, donc le filtre " Désert" est toujours actif.
+
+Q13:DetailScreen reçoit la destination grace a son constructeur. Lorsqu on ouvre l'écran, on transmet l'objet destination de la carte sélectionnee. On réutilise le mecanisme de passage de parametres par constructeur étudiee au TP3.
+
+Q14: L'effet animation tactile "InkWell" peut dépasser les coins arrondis de la carte. Avec Clip.antiAlias, l'effet est découpe pour respecter les bordures arrondies.
