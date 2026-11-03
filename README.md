@@ -43,3 +43,8 @@ Q15 : formKey.currentState!.validate() cette méthode vérifie tous les champs d
 Q16 : inputFormatters controle la saisie pendant que l'utilisateur écrit. par exemple il empechent de saisir des lettres et limitent le téléphone à 8 chiffres. validator vérifie si la valeur saisie est correcte lorsque la validation du formulaire est déclenchée. Par exemple, il vérifie que le numéro contient exactement 8 chiffres.
 
 Q17 : dispose() permet de libérer les ressources utilisée par les TextEditingController lorsqu on quitte l'écran.
+
+Q18 : On utilise readOnly: true pour empecher l'utilisateur de saisir la date manuellement avec le clavier. Il doit choisir la date e partir du calendrier avec showDatePicker(). sinon il peut ecrire une date incorrecte ou dans un mauvais format.
+
+Q19 :  _total est un getter qui calcule le prix selon la formule et le nombre de voyageurs. il se recalcule automatiquement
+quand les valeurs changent et que setState() reconstruit l'interface.

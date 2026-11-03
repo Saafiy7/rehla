@@ -68,11 +68,46 @@ class _ReservationScreenState extends State<ReservationScreen> {
   }
 
   void _valider() {
-    if (!_formKey.currentState!.validate()) return;
+    if (!_formKey.currentState!.validate()) {
+      setState(() => _autoValidation = AutovalidateMode.onUserInteraction);
+      return;
+    }
     // Provisoire : sera remplacé au palier 5
     ScaffoldMessenger.of(
       context,
     ).showSnackBar(const SnackBar(content: Text('Formulaire valide')));
+  }
+
+  final _dateCtrl = TextEditingController();
+  DateTime? _date; // null tant qu'aucune date n'est choisie
+  String _formule = 'Essentiel';
+  bool _conditions = false;
+  AutovalidateMode _autoValidation = AutovalidateMode.disabled;
+
+  int get _prixParPersonne => _formule == 'Confort'
+      ? (widget.destination.prix * 1.3).round()
+      : widget.destination.prix;
+
+  int get _total => _prixParPersonne * widget.voyageurs;
+
+  Future<void> _choisirDate() async {
+    final demain = DateTime.now().add(const Duration(days: 1));
+    final choisie = await showDatePicker(
+      context: context,
+      initialDate: _date ?? demain,
+      firstDate: demain,
+      lastDate: DateTime.now().add(const Duration(days: 365)),
+      helpText: 'Date de départ',
+    );
+    // TODO 1 : si l'utilisateur annule (null), ne rien faire
+    if (choisie == null) return;
+    // TODO 2 : avec setState, mémoriser la date dans _date et écrire
+    //          'jj/mm/aaaa' dans _dateCtrl.text (padLeft(2, '0'))
+    setState(() {
+      _date = choisie;
+      _dateCtrl.text =
+          '${choisie.day.toString().padLeft(2, '0')}/${choisie.month.toString().padLeft(2, '0')}/${choisie.year}';
+    });
   }
 
   @override
@@ -81,6 +116,7 @@ class _ReservationScreenState extends State<ReservationScreen> {
       appBar: AppBar(title: const Text('Réserver')),
       body: Form(
         key: _formKey,
+        autovalidateMode: _autoValidation,
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(20),
           child: Column(
@@ -88,6 +124,45 @@ class _ReservationScreenState extends State<ReservationScreen> {
             children: [
               // TODO 4 : récapitulatif (image 64 x 64, nom, durée, voyageurs)
               const SizedBox(height: 24),
+              TextFormField(
+                controller: _dateCtrl,
+                readOnly: true,
+                onTap: _choisirDate,
+                decoration: _deco(
+                  'Date de départ',
+                  Icons.calendar_month_outlined,
+                ),
+                validator: (_) => _date == null ? 'Choisissez une date' : null,
+              ),
+              const SizedBox(height: 16),
+              SegmentedButton<String>(
+                segments: const [
+                  ButtonSegment(
+                    value: 'Essentiel',
+                    label: Text('Essentiel'),
+                    icon: Icon(Icons.backpack_outlined),
+                  ),
+                  ButtonSegment(
+                    value: 'Confort',
+                    label: Text('Confort +30 %'),
+                    icon: Icon(Icons.hotel_outlined),
+                  ),
+                ],
+                selected: {_formule},
+                onSelectionChanged: (choix) {
+                  // memoriser le choix dans _formule avec setState
+                  setState(() => _formule = choix.first);
+                },
+              ),
+              CheckboxListTile(
+                value: _conditions,
+                onChanged: (v) => setState(() => _conditions = v ?? false),
+                controlAffinity: ListTileControlAffinity.leading,
+                contentPadding: EdgeInsets.zero,
+                title: const Text("J'accepte les conditions d'annulation"),
+                subtitle: const Text('Annulation gratuite jusqu\'à 48 h avant'),
+              ),
+              const SizedBox(height: 16),
               TextFormField(
                 controller: _nomCtrl,
                 decoration: _deco('Nom complet', Icons.person_outline),
@@ -126,10 +201,26 @@ class _ReservationScreenState extends State<ReservationScreen> {
       //          qui appelle _valider (inspirez-vous de la barre du détail)
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.all(20),
-        child: FilledButton.icon(
-          onPressed: _valider,
-          icon: const Icon(Icons.check),
-          label: const Text('Confirmer'),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Text(
+              '$_prixParPersonne DT × ${widget.voyageurs}',
+              textAlign: TextAlign.end,
+            ),
+            Text(
+              '$_total DT',
+              textAlign: TextAlign.end,
+              style: Theme.of(context).textTheme.titleLarge,
+            ),
+            const SizedBox(height: 12),
+            FilledButton.icon(
+              onPressed: _conditions ? _valider : null,
+              icon: const Icon(Icons.check),
+              label: const Text('Confirmer'),
+            ),
+          ],
         ),
       ),
     );
