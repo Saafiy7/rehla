@@ -65,3 +65,16 @@ Q24 : C'est le serveur qui a choisi automatiquement l'identifiant de la réserva
 
 Q25 : GET : sert a récupérer des données depuis le serveur. Les parametres sont généralement transmis dans l'URL, donc elle n'a pas besoin d'un corps.
 POST : sert à envoyer des données au serveur pour créer une nouvelle ressource. Ces données sont transmises dans le corps de la requête.
+
+Q26 : Parce que factory permet de créer et de retourner une instance de destination à partir des donnees JSON.
+
+Q27 : La valeur "420" sera interprétée comme une String et non comme un nombre.
+
+Q28 : Parce que la récupération des données depuis l'API prend du temps et se fait de manière asynchrone.
+
+Q29 : On utilise late parce que la variable \_futurDestinations sera initialisée plus tard, généralement dans la méthode initState().
+
+Q30 : L'utilisateur pourrait voir un écran d'erreur ou un comportement inattendu car l'application ne gère pas correctement l'échec de la requete HTTP.
+
+Q31 : Non le changement de catégorie ne fait pas une nouvelle requete au serveur.
+parce que les destinations ont déja été récupérees et stockees dans snapshot.data.
