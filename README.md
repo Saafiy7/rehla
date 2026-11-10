@@ -24,10 +24,10 @@ horizontal libre. Sans largeur disponible il peut provoquer une erreur de contra
 Q8 : Aucune ligne supplementaire dans HomeScreen ,il suffit d'ajouter une destination a la liste destinations,
 dans le fichier ou cette liste est declaree. La boucle for afficher automatiquement la nouvelle carte.
 
-Q9 : Si on écrit _categorie = c; sans setState(), la valeur de _categorie change en mémoire, Flutter ne relance pas automatiquement build().
+Q9 : Si on écrit \_categorie = c; sans setState(), la valeur de \_categorie change en mémoire, Flutter ne relance pas automatiquement build().
 alors l'écran ne se met pas forcement à jour immediatement.
 
-Q10 : _filtrees est un getter recalculé à chaque build() parce que la liste filtrée dépend de _categorie. quand la catégorie change et setState() relance build(), le getter renvoie automatiquement la bonne liste.
+Q10 : \_filtrees est un getter recalculé à chaque build() parce que la liste filtrée dépend de \_categorie. quand la catégorie change et setState() relance build(), le getter renvoie automatiquement la bonne liste.
 
 Q11 : HeroBanner peut rester un StatelessWidget parce qu'il ne gère pas d'état interne qui change. C'est HomeScreen qui gère l'état avec setState().
 Flutter reconstruit les widgets nécessaires lorsque l'état change.
@@ -46,7 +46,7 @@ Q17 : dispose() permet de libérer les ressources utilisée par les TextEditingC
 
 Q18 : On utilise readOnly: true pour empecher l'utilisateur de saisir la date manuellement avec le clavier. Il doit choisir la date e partir du calendrier avec showDatePicker(). sinon il peut ecrire une date incorrecte ou dans un mauvais format.
 
-Q19 :  _total est un getter qui calcule le prix selon la formule et le nombre de voyageurs. il se recalcule automatiquement
+Q19 : \_total est un getter qui calcule le prix selon la formule et le nombre de voyageurs. il se recalcule automatiquement
 quand les valeurs changent et que setState() reconstruit l'interface.
 
 Q20 : reservation vaut null
@@ -57,3 +57,11 @@ Cela signifie qu'après un await, le widget peut avoir été supprimé de l'arbr
 
 Q22 : Une boite de dialogue est affichée au-dessus de la page actuelle.
 Navigator.pop(context) permet de fermer la boite de dialogue et de revenir a la page précédente.
+
+Q23 : La requéte renvoie le code 404 Not Found.
+Il appartient à la famille des codes 4xx (erreurs coté client)
+
+Q24 : C'est le serveur qui a choisi automatiquement l'identifiant de la réservation lors de sa création avec la requête POST.
+
+Q25 : GET : sert a récupérer des données depuis le serveur. Les parametres sont généralement transmis dans l'URL, donc elle n'a pas besoin d'un corps.
+POST : sert à envoyer des données au serveur pour créer une nouvelle ressource. Ces données sont transmises dans le corps de la requête.

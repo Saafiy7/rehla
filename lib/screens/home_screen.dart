@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:rehla/widgets/home_header.dart';
 import 'package:rehla/widgets/search_box.dart';
-import '../widgets/hero_banner.dart';
 import '../data/destinations.dart';
-import '../widgets/destination_card.dart';
-import '../widgets/section_title.dart';
 import '../models/destination.dart';
-import 'package:rehla/data/destinations.dart';
+import '../widgets/destination_card.dart';
+import '../widgets/hero_banner.dart';
+import '../widgets/section_title.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:rehla/data/destinations.dart';
-import 'package:rehla/screens/detail_screen.dart';
 
 import './screens/home_screen.dart';
 

@@ -1,15 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:rehla/widgets/home_header.dart';
-import 'package:rehla/widgets/search_box.dart';
-import '../widgets/hero_banner.dart';
-import '../data/destinations.dart';
 import '../models/destination.dart';
-import '../widgets/destination_card.dart';
-import '../widgets/section_title.dart';
-/// Catégories affichées sous forme de puces (ChoiceChip).
+
 const List<String> categories = ['Tout', 'Plage', 'Désert', 'Patrimoine'];
 
-/// Données de démonstration (fichier fourni, à copier tel quel).
 const List<Destination> destinations = [
   Destination(
     nom: 'Sidi Bou Saïd',
