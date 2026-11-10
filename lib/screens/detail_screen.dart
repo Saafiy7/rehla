@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import '../models/destination.dart';
-import 'reservation_screen.dart';
-import '../widgets/favorite_button.dart';
 import '../models/reservation.dart';
+import '../services/api_service.dart';
+import '../widgets/favorite_button.dart';
+import 'reservation_screen.dart';
 
 class DetailScreen extends StatefulWidget {
   final Destination destination;
@@ -30,7 +31,24 @@ class _DetailScreenState extends State<DetailScreen> {
     // TODO 4 : si l'écran n'est plus affiché (!mounted), s'arrêter
     if (!mounted) return;
 
-    await showDialog<void>(
+    final String id;
+    try {
+      //TODO 5
+      id =  await ApiService.creerReservation(reservation);
+    }  catch (e) {
+    if (!mounted) return;
+    // TODO 6 : SnackBar rouge « Envoi impossible : json-server est-il lancé ? »
+      // pas de confirmation si rien n'est enregistré
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Envoi impossible : json-server est-il lancé ?'),
+          backgroundColor: Colors.red,
+        ),
+      );
+    return;
+    }
+  if (!mounted) return;
+   await showDialog<void>(
       context: context,
       builder: (context) => AlertDialog(
         icon: const Icon(Icons.check_circle, color: Colors.green, size: 48),

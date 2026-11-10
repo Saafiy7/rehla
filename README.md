@@ -78,3 +78,10 @@ Q30 : L'utilisateur pourrait voir un écran d'erreur ou un comportement inattend
 
 Q31 : Non le changement de catégorie ne fait pas une nouvelle requete au serveur.
 parce que les destinations ont déja été récupérees et stockees dans snapshot.data.
+
+Q32 : Parce que le serveur connait déja les informations de la destination dans sa base de données.
+
+Q33 : Le serveur risque de ne pas reconnaitre correctement le format des données envoyées dans le Body.
+il peut donc refuser la requete ou retourner une erreur
+
+Q34 : Parce que pendant l'attente de la réponse du serveur (await) l'utilisateur peut quitter l'écran.

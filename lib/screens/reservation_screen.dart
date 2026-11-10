@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart'; // pour inputFormatters
+import 'package:flutter/services.dart';
 import '../models/destination.dart';
 import '../models/reservation.dart';
 
@@ -82,6 +82,7 @@ class _ReservationScreenState extends State<ReservationScreen> {
       dateDepart: _date!,
       voyageurs: widget.voyageurs,
       formule: _formule,
+      total: _total.toDouble(),
     );
     // TODO 2 : fermer l'écran ET renvoyer reservation
     Navigator.of(context).pop(reservation);
