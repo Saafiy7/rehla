@@ -33,34 +33,32 @@ class _DetailScreenState extends State<DetailScreen> {
 
     final String id;
     try {
-      //TODO 5
-      id =  await ApiService.creerReservation(reservation);
-    }  catch (e) {
-    if (!mounted) return;
-    // TODO 6 : SnackBar rouge « Envoi impossible : json-server est-il lancé ? »
-      // pas de confirmation si rien n'est enregistré
+      id = await ApiService.creerReservation(reservation);
+    } catch (_) {
+      if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
+        const SnackBar(
           content: Text('Envoi impossible : json-server est-il lancé ?'),
           backgroundColor: Colors.red,
         ),
       );
-    return;
+      return;
     }
-  if (!mounted) return;
-   await showDialog<void>(
+
+    if (!mounted) return;
+    await showDialog<void>(
       context: context,
       builder: (context) => AlertDialog(
         icon: const Icon(Icons.check_circle, color: Colors.green, size: 48),
         title: const Text('Réservation confirmée'),
         content: Text(
           '${reservation.nom}, votre voyage à ${reservation.destination.nom} est réservé.\n\n'
+          'N° de réservation : $id\n'
           'Voyageurs : ${reservation.voyageurs}\n'
           'Formule : ${reservation.formule}\n'
           'Total : ${reservation.total} DT\n\n'
           'Une confirmation sera envoyée à ${reservation.email}.',
-        ), // TODO 5 : nom, destination, voyageurs,
-        //          formule, total et e-mail
+        ),
         actions: [
           FilledButton(
             onPressed: () => Navigator.pop(context),

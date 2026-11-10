@@ -75,7 +75,9 @@ class _HomeScreenState extends State<HomeScreen> {
     });
     try {
       await futur; // RefreshIndicator attend la fin
-    } catch (_) {} // l'erreur est affichée par FutureBuilder
+    } catch (_) {
+      // FutureBuilder affiche déjà l'erreur.
+    }
   }
 
   List<Destination> _filtrer(List<Destination> toutes) => _categorie == 'Tout'
@@ -93,7 +95,12 @@ class _HomeScreenState extends State<HomeScreen> {
         }
         // TODO 3 : erreur (snapshot.hasError) -> ErreurReseau(...)
         if (snapshot.hasError) {
-          return const Center(child: Text('Erreur de réseau'));
+          return ErreurReseau(
+            message: 'Erreur de réseau',
+            onReessayer: () {
+              _recharger();
+            },
+          );
         }
         final destinations = snapshot.data!;
         return RefreshIndicator(
