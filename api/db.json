@@ -67,5 +67,72 @@
       "description": "Médina fortifiée au bord de la mer, jardins de jasmin et longues plages : la station balnéaire historique du Cap Bon."
     }
   ],
-  "reservations": []
+  "reservations": [
+    {
+      "destinationId": "4",
+      "nom": "aed",
+      "email": "aedzx@gg.nb",
+      "telephone": "12345678",
+      "voyageurs": 1,
+      "formule": "Essentiel",
+      "total": 120,
+      "dateDepart": "2026-11-11T00:00:00.000",
+      "id": 1
+    },
+    {
+      "destinationId": "1",
+      "nom": "qsw",
+      "email": "ccc@ccb.bn",
+      "telephone": "99999999",
+      "voyageurs": 1,
+      "formule": "Essentiel",
+      "total": 180,
+      "dateDepart": "2026-11-11T00:00:00.000",
+      "id": 2
+    },
+    {
+      "destinationId": "1",
+      "nom": "awsaw",
+      "email": "cccc@cgg.mm",
+      "telephone": "00000000",
+      "voyageurs": 1,
+      "formule": "Essentiel",
+      "total": 180,
+      "dateDepart": "2026-11-11T00:00:00.000",
+      "id": 3
+    },
+    {
+      "destinationId": "6",
+      "nom": "asz",
+      "email": "ttt@gf.mm",
+      "telephone": "55555555",
+      "voyageurs": 1,
+      "formule": "Essentiel",
+      "total": 260,
+      "dateDepart": "2026-11-11T00:00:00.000",
+      "id": 4
+    },
+    {
+      "destinationId": "1",
+      "nom": "Bbbb",
+      "email": "hhh@xc.nn",
+      "telephone": "99999999",
+      "voyageurs": 1,
+      "formule": "Essentiel",
+      "total": 180,
+      "dateDepart": "2026-11-11T00:00:00.000",
+      "id": 5
+    },
+    {
+      "destinationId": "6",
+      "nom": "asazs",
+      "email": "zasa@bb.mm",
+      "telephone": "22222222",
+      "voyageurs": 1,
+      "formule": "Essentiel",
+      "total": 260,
+      "dateDepart": "2026-11-11T00:00:00.000",
+      "id": 6
+    }
+  ]
 }
