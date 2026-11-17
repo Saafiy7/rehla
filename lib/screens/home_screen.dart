@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'favoris_screen.dart';
 import 'package:rehla/widgets/home_header.dart';
 import 'package:rehla/widgets/search_box.dart';
 import '../data/destinations.dart';
@@ -173,9 +174,11 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: _onglet == 0
-            ? _construireExplorer()
-            : const Center(child: Text('Bientôt disponible')),
+        child: switch (_onglet) {
+          0 => _construireExplorer(),
+          1 => const FavorisScreen(),
+          _ => const Center(child: Text('Bientôt disponible')),
+        },
       ),
 
       bottomNavigationBar: NavigationBar(
@@ -192,8 +195,12 @@ class _HomeScreenState extends State<HomeScreen> {
             label: 'Explorer',
           ),
           NavigationDestination(
-            icon: Icon(Icons.favorite_border),
-            selectedIcon: Icon(Icons.favorite),
+            icon: Badge(
+              child: const Icon(Icons.favorite_border),
+            ),
+            selectedIcon: Badge(
+              child: Icon(Icons.favorite),
+            ),
             label: 'Favoris',
           ),
           NavigationDestination(
