@@ -192,15 +192,11 @@ class _HomeScreenState extends State<HomeScreen> {
           NavigationDestination(
             icon: Icon(Icons.explore_outlined),
             selectedIcon: Icon(Icons.explore),
-            label: 'Réservervation',
+            label: 'Voyages',
           ),
           NavigationDestination(
-            icon: Badge(
-              child: const Icon(Icons.favorite_border),
-            ),
-            selectedIcon: Badge(
-              child: Icon(Icons.favorite),
-            ),
+            icon: Badge(child: const Icon(Icons.favorite_border)),
+            selectedIcon: Badge(child: Icon(Icons.favorite)),
             label: 'Favoris',
           ),
           NavigationDestination(
