@@ -107,9 +107,22 @@ class _HomeScreenState extends State<HomeScreen> {
           );
         }
         final destinations = snapshot.data!;
-        return RefreshIndicator(
-          onRefresh: _recharger,
-          child: _construireAccueil(destinations),
+        return Column(
+          children: [
+            if (ApiService.depuisCache)
+              Container(
+                width: double.infinity,
+                color: Colors.amber.shade100,
+                padding: const EdgeInsets.all(8),
+                child: const Text('Hors connexion : données enregistrées'),
+              ),
+            Expanded(
+              child: RefreshIndicator(
+                onRefresh: _recharger,
+                child: _construireAccueil(destinations),
+              ),
+            ),
+          ],
         );
       },
     );
