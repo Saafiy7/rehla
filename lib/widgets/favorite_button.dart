@@ -20,8 +20,8 @@ class FavoriteButton extends StatelessWidget {
             : Icons.favorite_border,
         color: Colors.red,
       ),
-      onPressed: () {
-        context.read<FavorisModel>().basculer(destination);
+      onPressed: () async {
+        await context.read<FavorisModel>().basculer(destination);
       },
     );
   }

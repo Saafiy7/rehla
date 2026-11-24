@@ -1,27 +1,47 @@
+import 'dart:convert';
 import 'package:flutter/foundation.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../models/destination.dart';
- 
-/// Favoris partagés par tous les écrans.
+
 class FavorisModel extends ChangeNotifier {
-  // favoris rangés par id : Map<String, Destination>
+  // cspell:ignore favoris
+  static const _cle = 'favoris';
   final Map<String, Destination> _favoris = {};
-  // TODO estFavori(Destination d) -> bool
-  bool estFavori(Destination d) {
-    return _favoris.containsKey(d.id);
-  }
-  // TODO getter liste : les destinations favorites
-  List<Destination> get liste => _favoris.values.toList();
-  // TODO getter nombre
-  int get nombre => _favoris.length;
-  // TODO basculer(Destination d) : ajoute ou retire,
-  //      prévient les écouteurs, renvoie true si ajouté
-  bool basculer(Destination d) {
-    if (_favoris.containsKey(d.id)) {
-      _favoris.remove(d.id);
-    } else {
-      _favoris[d.id] = d;
+
+  List<Destination> get favorites => _favoris.values.toList();
+
+  bool estFavori(Destination destination) =>
+      _favoris.containsKey(destination.id);
+
+  Future<void> charger() async {
+    final prefs = await SharedPreferences.getInstance();
+    // TODO 1 : lire la liste de textes (liste vide si rien n'est stocké)
+    final listeTextes = prefs.getStringList(_cle) ?? [];
+    // TODO 2 : pour chaque texte : jsonDecode puis Destination.fromJson,
+    //          ranger la destination dans _favoris avec son id
+    for (final texte in listeTextes) {
+      final map = jsonDecode(texte);
+      final destination = Destination.fromJson(map);
+      _favoris[destination.id] = destination;
     }
     notifyListeners();
-    return _favoris.containsKey(d.id);
+  }
+
+  Future<void> _sauvegarder() async {
+    final prefs = await SharedPreferences.getInstance();
+    // TODO 3 : transformer chaque destination en texte
+    //          (toJson puis jsonEncode) et l'écrire avec setStringList
+    final listeTextes = _favoris.values
+        .map((destination) => jsonEncode(destination.toJson()))
+        .toList();
+    await prefs.setStringList(_cle, listeTextes);
+  }
+
+  Future<bool> basculer(Destination d) async {
+    final ajoute = _favoris.remove(d.id) == null;
+    if (ajoute) _favoris[d.id] = d;
+    notifyListeners();
+    await _sauvegarder(); // TP7 : recopie sur le disque
+    return ajoute;
   }
 }

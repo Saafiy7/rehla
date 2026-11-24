@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'favoris_screen.dart';
 import 'package:rehla/widgets/home_header.dart';
 import 'package:rehla/widgets/search_box.dart';
 import '../data/destinations.dart';
 import '../models/destination.dart';
+import '../provider/favoris_model.dart';
 import '../widgets/destination_card.dart';
 import '../widgets/hero_banner.dart';
 import '../widgets/section_title.dart';
@@ -172,6 +174,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final nombreFavoris = context.watch<FavorisModel>().favorites.length;
+
     return Scaffold(
       body: SafeArea(
         child: switch (_onglet) {
@@ -188,15 +192,23 @@ class _HomeScreenState extends State<HomeScreen> {
             _onglet = index;
           });
         },
-        destinations: const [
+        destinations: [
           NavigationDestination(
             icon: Icon(Icons.explore_outlined),
             selectedIcon: Icon(Icons.explore),
             label: 'Voyages',
           ),
           NavigationDestination(
-            icon: Badge(child: const Icon(Icons.favorite_border)),
-            selectedIcon: Badge(child: Icon(Icons.favorite)),
+            icon: Badge(
+              isLabelVisible: nombreFavoris > 0,
+              label: Text('$nombreFavoris'),
+              child: const Icon(Icons.favorite_border),
+            ),
+            selectedIcon: Badge(
+              isLabelVisible: nombreFavoris > 0,
+              label: Text('$nombreFavoris'),
+              child: const Icon(Icons.favorite),
+            ),
             label: 'Favoris',
           ),
           NavigationDestination(
