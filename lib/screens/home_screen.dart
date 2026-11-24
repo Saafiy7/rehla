@@ -6,6 +6,7 @@ import 'package:rehla/widgets/search_box.dart';
 import '../data/destinations.dart';
 import '../models/destination.dart';
 import '../provider/favoris_model.dart';
+import '../provider/reglages_model.dart';
 import '../widgets/destination_card.dart';
 import '../widgets/hero_banner.dart';
 import '../widgets/section_title.dart';
@@ -175,8 +176,24 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     final nombreFavoris = context.watch<FavorisModel>().favorites.length;
+    final sombre = context.watch<ReglagesModel>().sombre;
 
     return Scaffold(
+      appBar: _onglet == 0
+          ? AppBar(
+              actions: [
+                IconButton(
+                  tooltip: sombre
+                      ? 'Activer le thème clair'
+                      : 'Activer le thème sombre',
+                  icon: Icon(sombre ? Icons.light_mode : Icons.dark_mode),
+                  onPressed: () async {
+                    await context.read<ReglagesModel>().basculerTheme();
+                  },
+                ),
+              ],
+            )
+          : null,
       body: SafeArea(
         child: switch (_onglet) {
           0 => _construireExplorer(),
